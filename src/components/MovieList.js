@@ -7,7 +7,8 @@ const MovieList = () => {
 
   useEffect(() => {
     fetch(
-      "https://movie-list-f6525-default-rtdb.firebaseio.com/listMovies.json"
+      "https://movie-list-f6525-default-rtdb.firebaseio.com/listMovies.json",
+      {}
     )
       .then((response) => {
         return response.json();
@@ -32,17 +33,12 @@ const MovieList = () => {
   return (
     <ul className="m-5">
       {movies.map((movie) => {
-          return <li key={movie.imdbID}><Movie /></li>
+        return (
+          <li key={movie.imdbID}>
+            <Movie info={movie} />
+          </li>
+        );
       })}
-      <li>
-        <Movie />
-      </li>
-      <li>
-        <Movie />
-      </li>
-      <li>
-        <Movie />
-      </li>
     </ul>
   );
 };

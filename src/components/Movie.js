@@ -1,30 +1,59 @@
 //Bootstrap
 import Card from "react-bootstrap/Card";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, ButtonGroup, Button } from "react-bootstrap";
 
 const Movie = (props) => {
+  var imdbRating = props.info.Ratings[0];
+  var rtRating = props.info.Ratings[1];
+  var metaRating = props.info.Ratings[2];
+
   return (
-    <Card className="mt-1">
+    <Card className="shadow p-3 mb-4 bg-body rounded">
       <Card.Body>
         <Row>
-          <Col className="col-2">
+          <Col className="col-3">
             <img
-              src="https://a.ltrbxd.com/resized/film-poster/4/2/2/0/3/5/422035-burning-0-125-0-187-crop.jpg?k=103798ec50"
+              src={props.info.Poster}
               width="125"
               height="187"
-              alt="Burning"
-              srcset="https://a.ltrbxd.com/resized/film-poster/4/2/2/0/3/5/422035-burning-0-250-0-375-crop.jpg?k=7b24f00a4c 2x"
-              class="image"
+              alt={props.info.Title}
+              srcSet={props.info.Poster}
+              className="image"
             ></img>
           </Col>
-          <Col>
-          <Row>
-            <h4>Burning</h4>
+          <Col className="col-6">
+            <Row>
+              <h4>{props.info.Title}</h4>
             </Row>
             <Row>
-              <h5>Lee Chang-dong</h5>
+              <h5>{props.info.Director}</h5>
+            </Row>
+            <Row className="mt-3">
+              <h5>
+                {imdbRating.Source}: {imdbRating.Value}
+              </h5>
+            </Row>
+            <Row>
+              <ButtonGroup className="mt-4 me-2">
+                <Button className="me-2">Completed</Button>
+                <Button>Plan to Watch</Button>
+              </ButtonGroup>
             </Row>
           </Col>
+          <Col>
+            <h5>{props.info.Year}</h5>
+          </Col>
+          <Col>
+            <h5>{props.info.Country.split(",")[0]}</h5>
+          </Col>
+        </Row>
+        <Row>
+          {/* <Col>
+            <h5>{rtRating.Source}: {rtRating.Value}</h5>
+          </Col>
+          <Col>
+            <h5>{metaRating.Source}: {metaRating.Value}</h5>
+          </Col> */}
         </Row>
       </Card.Body>
     </Card>
